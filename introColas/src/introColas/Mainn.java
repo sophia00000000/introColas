@@ -5,8 +5,10 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Mainn {
-
+	static Queue<Character> colaR= new LinkedList<>(); 
+		static int i=0;
 	public static void main(String[] args) {
+		
 		// TODO Auto-generated method stub
 		Queue<Integer> cola= new LinkedList<>(); //lista doblemente encadenada, tiene la referncia al siguiente y el anterior
 		Queue<Integer> cola2= new LinkedList<>(); 
@@ -39,32 +41,32 @@ public class Mainn {
 		
 		char[] palabra = {'o','s','o'};
 		char[] palabra2 = {'h','s','o'};
+		String palabra3 = "arener";
 		
+		System.out.println(esPalindrome2(palabra));
 		System.out.println(esPalindrome2(palabra2));
-		
+		System.out.println(esPalindrome(palabra3));
 	}
 	
-	/**
+	
 	
 	public static Boolean esPalindrome(String palabra) {
-		Queue<Integer> cola= new LinkedList<>(); 
+		Queue<Character> cola= new LinkedList<>();
 		Stack<Character> pila= new Stack<>();
-		String invertida;
 		for(int i=0; i<palabra.length(); i++) {
 			pila.push(palabra.charAt(i));
+			cola.add(palabra.charAt(i));
 		}
 		
 		while(!pila.isEmpty()) {
-			invertida+=pila.pop();
+			if(pila.pop()!= cola.poll())
+				return false;
 		}
+		return true;
 		
+	}
 		
-		
-		if(palabra==invertida) {
-			return true;
-		}
-		
-		*/
+	
 	
 	public static Boolean esPalindrome2(char[] palabra) {
 		Queue<Character> cola= new LinkedList<>(); 
@@ -85,8 +87,24 @@ public class Mainn {
 		
 	}
 	
-		
-		
 	
+	
+	public static Boolean esPalindromeRecursivo(String palabra) {
+		
+		if (i==palabra.length()){
+			return false;
+		}
+		else {
+			char letra = palabra.charAt(i);//pila
+			colaR.add(palabra.charAt(i));
+			i++;
+			esPalindromeRecursivo(palabra);
+			if(letra!= colaR.poll())
+				return false;
+			
+		}
+		return true;
+		
+	}
 
 }
